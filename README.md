@@ -3,7 +3,7 @@ Demonstrate the usage of graphql and FastAPI.
 
 ## Tools used
 * [FastAPI](https://fastapi.tiangolo.com/)
-* [GraphQL]()
+* [GraphQL Library (strawberry-graphql](https://strawberry.rocks/docs/integrations/fastapi)
 * [Masonite ORM](https://orm.masoniteproject.com/)
 
 ## Setup projects
@@ -32,6 +32,7 @@ docker compose down # To stop the database
 ## Running the project
 * Running the code(DEV)
 ```
+docker compose up -d
 uvicorn main:app --reload
 ```
 
@@ -55,11 +56,33 @@ uvicorn main:app --reload
 * masonite-orm migrate
 
 
+## Testing
+* Add user Mutation
+```
+mutation {
+  addUser(userData:{
+    name: "John Doe",
+    email: "john@email.com",
+    address: "My home address",
+    phoneNumber: "1234567890",
+    sex: "male"
+  }){
+    id
+    name
+    address
+  }
+}
+```
+
+
 ## Credits
 * [learning material](https://testdriven.io/blog/fastapi-graphql/)
 
 
-## Additional resources
-* [config/database.py](https://orm.masoniteproject.com/installation#configuration)
+## Additional resources / Notes
+* [masoniteorm config/database.py](https://orm.masoniteproject.com/installation#configuration)
 * [Schema & Migrations](https://orm.masoniteproject.com/schema-and-migrations)
+* [Schema graphql](https://docs.graphene-python.org/en/latest/types/schema/)
+* [Schema basics strawberry](https://strawberry.rocks/docs/general/schema-basics)
+* [Mutations graphql](https://docs.graphene-python.org/en/latest/types/mutations/)
 
