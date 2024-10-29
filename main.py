@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import strawberry
 from strawberry.fastapi import GraphQLRouter
-from core import Mutation
+from core import Mutation, Query
 
 app = FastAPI()
 
@@ -11,11 +11,6 @@ def ping():
     return {"ping": "pong"}
 
 
-@strawberry.type
-class Query:
-  @strawberry.field
-  def hello(self) -> str:
-    return "Hello World"
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
 graphql_app = GraphQLRouter(schema)

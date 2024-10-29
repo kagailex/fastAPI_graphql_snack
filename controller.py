@@ -1,8 +1,9 @@
+from typing import List
 from models.User import User
 from models.Post import Post
 from models.Comment import Comment
 
-from schema import UserInput, PostInput, CommentInput
+from schema import UserInput, UserType, PostInput, PostType, CommentInput, CommentsType
 
 
 class CreateMutation:
@@ -59,3 +60,16 @@ class CreateMutation:
         post.attach("comments", comment)
 
         return comment
+
+
+class Queries:
+
+    def get_all_users(self) -> List[UserType]:
+        return User.all()
+    
+    
+    def get_single_user(self, user_id: int) -> UserType:
+        user = User.find(user_id)
+        if not user:
+            raise Exception("User not found")
+        return user
